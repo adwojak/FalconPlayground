@@ -1,18 +1,19 @@
-from falcon import API
+from flask import Flask, jsonify
+from flask_restful import Api, Resource
 
 
-class QuoteResource:
-    def on_get(self, req, resp):
-        """Handles GET requests"""
-        quote = {
-            "quote": (
-                "I've always been more interested in " "the future than in the past."
-            ),
-            "author": "Grace Hopper",
-        }
-
-        resp.media = quote
+class SomeResource(Resource):
+    def post(self):
+        # from flask import request
+        # request.content_type
+        # request.data
+        return jsonify({"hello": "world"})
 
 
-api = API()
-api.add_route("/quote", QuoteResource())
+def create_app():
+    app = Flask(__name__)
+    api = Api(app)
+
+    api.add_resource(SomeResource, "/")
+
+    return app
