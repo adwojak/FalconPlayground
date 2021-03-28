@@ -1,9 +1,6 @@
-from flask_restful import Resource
+from app.libs.resources import XmlResource
 
 
-class ExampleResource(Resource):
+class ExampleResource(XmlResource):
     def post(self):
-        # from flask import request
-        # request.content_type
-        # request.data
         return {"hello": "worqweld"}
